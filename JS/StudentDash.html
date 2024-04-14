@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../CSS/StyleDash.css">
+  <!--<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">-->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="container">
+  <header>
+   <div class="filterEntries">
+    <div class="entries">
+    show <select name="" id="table_size">
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+</div>
+   <div class="filter">
+    <label for="search">Search</label>
+    <input type="text" id="search" placeholder="search Brief"> 
+   </div>
+   </div>
+
+  <div class="addMemberBtn">
+    <button  onclick="window.location.href='StudentDiff.html'">New Difficultie</button>
+  </div>
+
+  </header>
+ <table >
+  <thead>
+    <tr class="heading">
+      <th>Titre</th>
+      <th>Brief</th>
+      <th>Date de création</th>
+      <th>Difficulté</th>
+      <th>Validé</th>
+      <th>Actions</th>
+     
+    </tr>
+  </thead>
+  <tbody><!--<i class='bx bx-hide eye-icon'></i>
+    <i class='bx bxs-message-square-x' ></i>
+    <i class='bx bxs-comment-check' ></i>
+    <i class='bx bx-edit-alt'></i>
+    <i class='bx bx-trash'></i>-->
+
+    <!--<tr><td class="empty" colspan="6" align="center">No data available on this table</td></tr>-->
+      <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+         
+         <td><button><i class='bx bx-hide eye-icon'></i></button></td>
+
+          <td><button><i class='bx bxs-message-square-x' ></i></button></td>
+          <td><button class="modifierButton"><i class='bx bx-edit-alt'></i></button>
+          <button><i class='bx bx-trash'></i></button></td>
+        </tr>
+              
+  </tbody>
+  </table>
+ <footer>
+  <span>Showing 1 to 10 of 50 difficulée</span>
+  <div class="pagination">
+    <button>prev</button>
+    <button class="active">1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <button>next</button>
+  </div>
+</footer>
+        
+
+  </div>
+
+  
+  <div class="container-form">
+   
+        <form id="form">
+            <header>
+                Modifier
+            </header>
+            <div>
+                <label for="titre">Titre:</label>
+                <input type="text" id="titre" placeholder="Titre">
+            </div>
+            <div>
+                <label for="brief">Brief:</label>
+                <input type="text" id="brief" placeholder="Brief">
+            </div>
+            <div>
+                <label for="difficulte">Difficulté rencontrée:</label>
+                <textarea id="difficulte" placeholder="Difficulté rencontrée"></textarea>
+            </div>
+            <div class="button">
+                <button type="submit">Modifier</button>
+            </div>
+        </form>
+    
+</div>
+
+
+
+<script src="/JS/Student.js"></script>
+</body>
+</html>

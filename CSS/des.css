@@ -1,0 +1,97 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+:root{
+  --dark1:#0000004d;
+  --dark2:#181c20;
+  --dark3:#212529;
+  --dark4:#2d3135;
+  --dark5:#424549;
+  --dark6:#404346;
+  --dark7:#6E6A69;
+  --dark8:#dae0e7;
+  --dark9:#262a2e;
+  --red1:#CE0033;
+  --blue:#504DC1;
+
+}
+body {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  min-height: 100vh;
+  background: linear-gradient(var(--red1) 50%, var(--dark2) 50%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.container-form{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+ 
+ 
+
+}
+
+form {
+  max-width: 430px;
+  position: absolute;
+  width: 100%;
+  padding: 30px;
+  border-radius: 6px;
+  background-color: var(--dark3);
+ 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+header{
+  font-size: 28px;
+  font-weight: 600;
+  color: #CE0033;
+  text-align: center;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color:var(--blue);
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+   border: 1px solid var(--dark7);
+  background-color: var(--dark4);
+  color:var(--dark8);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #504DC1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: var(--red1);
+}
+
+@media screen and (max-width: 480px) {
+  form {
+    padding: 10px;
+  }
+}
