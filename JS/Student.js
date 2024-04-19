@@ -2,8 +2,10 @@ const formup = document.getElementById("form");
 const titre = document.getElementById("titre");
 const brief = document.getElementById("brief");
 const difficulte = document.getElementById("difficulte");
+const submitBtn = document.getElementById("submitBtn"); // Définir submitBtn
+const modalTitle = document.getElementById("modalTitle"); 
 
-const informations = JSON.parse(localStorage.getItem('informations'));
+const informations = JSON.parse(localStorage.getItem('informations')) || [];
 const getData = informations || []; 
 
 let isEdit = false;
@@ -54,6 +56,7 @@ function showInfoForm(formateur, bootcamp, titre, brief, difficulte) {
 }
 
 function editInfo(index, Titre, Brief, Difficulte) {
+    console.log("Edit button clicked."); // Ajout de la console pour débogage
     isEdit = true;
     editId = index;
   
@@ -61,13 +64,19 @@ function editInfo(index, Titre, Brief, Difficulte) {
     brief.value = Brief;
     difficulte.value = Difficulte;
   
-    submitBtn.innerText = "Update";
-    modalTitle.innerText = "Update The Form";
+    if(submitBtn) {
+        submitBtn.innerText = "Close";
+    }
+    if(modalTitle) {
+        modalTitle.innerText = "Update The Form";
+    }
+    
     submitBtn.removeEventListener('click', submitForm);
     submitBtn.addEventListener('click', updateInfo);
     document.querySelector(".container-form1").style.display = "block";
     document.getElementById("form").style.display = "block";
 }
+
 
 function updateInfo() {
     const titreValue = titre.value;
@@ -85,8 +94,14 @@ function updateInfo() {
     formup.reset();
   
     isEdit = false;
-    submitBtn.innerText = "Submit";
-    modalTitle.innerText = "Fill the Form";
+    
+    if(submitBtn) {
+        submitBtn.innerText = "Submit";
+    }
+    if(modalTitle) {
+        modalTitle.innerText = "Fill the Form";
+    }
+    
     submitBtn.removeEventListener('click', updateInfo);
     window.location.reload();
 }
@@ -111,13 +126,16 @@ function submitForm(event) {
     formup.reset();
 }
 
-const boutonAfficherForm = document.querySelector('.modifierButton');
-const containerForm = document.querySelector('.container-form1');
-const formupp=document.getElementById("form");
-boutonAfficherForm.addEventListener('click', function() {
-    containerForm.style.display = "block";
-    formupp.style.display = "block";
+
+const boutonsModifier = document.querySelectorAll('.modifierButton');
+boutonsModifier.forEach(bouton => {
+    bouton.addEventListener('click', function() {
+        const index = this.parentElement.parentElement.id;
+        const info = getData.find(item => item.id === index);
+        editInfo(info.id, info.titre, info.brief, info.difficulte);
+    });
 });
+
 
 const boutonAfficherFormulaire = document.getElementById('read');
 const formulaireContainer = document.querySelector('.container-form');
