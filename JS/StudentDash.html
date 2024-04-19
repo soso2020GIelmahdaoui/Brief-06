@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="container">
-  <header>
+  <header class="container-header">
    <div class="filterEntries">
     <div class="entries">
     show <select name="" id="table_size">
@@ -31,6 +31,14 @@
   </div>
 
   </header>
+
+
+
+
+
+
+
+  <!--
  <table >
   <thead>
     <tr class="heading">
@@ -43,68 +51,127 @@
      
     </tr>
   </thead>
-  <tbody><!--<i class='bx bx-hide eye-icon'></i>
+  <tbody><i class='bx bx-hide eye-icon'></i>
     <i class='bx bxs-message-square-x' ></i>
     <i class='bx bxs-comment-check' ></i>
     <i class='bx bx-edit-alt'></i>
     <i class='bx bx-trash'></i>-->
 
-    <!--<tr><td class="empty" colspan="6" align="center">No data available on this table</td></tr>-->
+    <!--<tr><td class="empty" colspan="6" align="center">No data available on this table</td></tr>
       <tr>
           <td></td>
           <td></td>
           <td></td>
          
-         <td><button><i class='bx bx-hide eye-icon'></i></button></td>
+          <td><button ><i class='bx bx-hide eye-icon'></i></button></td>
 
-          <td><button><i class='bx bxs-message-square-x' ></i></button></td>
-          <td><button class="modifierButton"><i class='bx bx-edit-alt'></i></button>
-          <button><i class='bx bx-trash'></i></button></td>
+          <td><button><i class='bx bxs-message-square-x' ></i></button>
+            </td>
+          <td><button class="modifierButton"><i class='bx bx-edit-alt'></i>
+            <div class="container-form">
+   
+            <form id="form">
+                <header>
+                    Modifier
+                </header>
+                <div>
+                    <label for="titre">Titre:</label>
+                    <input type="text" id="titre" placeholder="Titre">
+                </div>
+                <div>
+                    <label for="brief">Brief:</label>
+                    <input type="text" id="brief" placeholder="Brief">
+                </div>
+                <div>
+                    <label for="difficulte">Difficulté rencontrée:</label>
+                    <textarea id="difficulte" placeholder="Difficulté rencontrée"></textarea>
+                </div>
+               
+            </form>
+        
+    </div></button>
+          <button class="deleteButton"><i class='bx bx-trash'></i></button></td>
         </tr>
               
   </tbody>
   </table>
- <footer>
-  <span>Showing 1 to 10 of 50 difficulée</span>
-  <div class="pagination">
-    <button>prev</button>
-    <button class="active">1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-    <button>5</button>
-    <button>next</button>
+
+
+-->
+
+
+<!--Moddify button-->
+
+<div class="container-form1">
+   
+  <form id="form">
+      <header>
+          Modifier
+      </header>
+      <div>
+          <label for="titre">Titre:</label>
+          <input type="text" id="titre" placeholder="Titre">
+      </div>
+      <div>
+          <label for="brief">Brief:</label>
+          <input type="text" id="brief" placeholder="Brief">
+      </div>
+      <div>
+          <label for="difficulte">Difficulté rencontrée:</label>
+          <textarea id="difficulte" placeholder="Difficulté rencontrée"></textarea>
+      </div>
+     
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <button type="submit" form="myForm" class="btn btn-primary submit">Submit</button>
+  </form>
+
+</div>
+
+<!-- Read data-->
+<section class="container-form">
+  <form id="showform">
+    <header>
+      Ajouter
+    </header>
+    <div>
+      <label for="name">Formateur:</label>
+      <input type="text" id="showname" placeholder="choose formater">
+    </div>
+    <div>
+      <label for="bootcamp">Bootcamp:</label>
+      <input type="text" id="showbootcamp" placeholder="choose your Bootcamp">
   </div>
+  <div>
+      <label for="titre">Titre:</label>
+      <input type="text" id="showtitre" placeholder="titre">
+  </div>
+  
+    <div>
+      <label for="brief">Brief:</label>
+      <input type="text" id="showbrief" placeholder="Brief">
+    </div>
+    <div>
+      <label for="msg">La difficulté rencontrée:</label>
+      <textarea id="showmsg" name="user_message"></textarea>
+    </div>
+    <div class="button">
+      <button type="submit">Lire</button>
+    </div>
+  </form>
+</section>
+
+
+
+
+ <footer>
+ 
 </footer>
         
 
   </div>
 
   
-  <div class="container-form">
-   
-        <form id="form">
-            <header>
-                Modifier
-            </header>
-            <div>
-                <label for="titre">Titre:</label>
-                <input type="text" id="titre" placeholder="Titre">
-            </div>
-            <div>
-                <label for="brief">Brief:</label>
-                <input type="text" id="brief" placeholder="Brief">
-            </div>
-            <div>
-                <label for="difficulte">Difficulté rencontrée:</label>
-                <textarea id="difficulte" placeholder="Difficulté rencontrée"></textarea>
-            </div>
-            <div class="button">
-                <button type="submit">Modifier</button>
-            </div>
-        </form>
-    
-</div>
+  
 
 
 

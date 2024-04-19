@@ -34,8 +34,8 @@ body {
   margin: 10px;
   margin-top: 20px;
 }
-/*---------------Form Modify-------------------*/
-.container-form{
+/*---------------Form Read-------------------*/
+.container-form {
   left: 0;
   top: 0;
   position: fixed;
@@ -44,31 +44,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour l'arrière-plan */
-    z-index: 999; /* Pour s'assurer que le popup est au-dessus de tout le reste */
-    display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
 }
-form {
+
+#showform{
   max-width: 430px;
   position: absolute;
-  height: 500px;
+  height: 650px;
   width: 80%;
   padding: 30px;
   border-radius: 6px;
-  background-color: var(--dark5);
+  background-color: var(--dark2);
   display: none;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
- 
- 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ajout d'une ombre portée */
 }
+
 #form.show-popup {
   display: block;
-
 }
-header{
+
+header {
   font-size: 28px;
   font-weight: 600;
   color: var(--red1);
@@ -78,22 +78,23 @@ header{
 form label {
   display: block;
   font-weight: bold;
- margin-top: 20px;
-  color:var(--blue);
+  margin-top: 8px;
+  color: var(--blue);
 }
+
 form input[type="text"],
 form textarea {
   width: 100%;
-  
-  padding:  15px;
-  margin-bottom: 10px;
+  padding: 15px;
+  margin-bottom: 5px;
   border: 1px solid var(--blue);
-  background-color: var(--dark4);
-  color:var(--dark8);
+  background-color: var(--dark3);
+  color: var(--dark8);
   border-radius: 6px;
-  font-weight: 16px;
+  font-size: 16px; /* Correction de la propriété "font-weight" à "font-size" */
   box-sizing: border-box;
 }
+
 form button {
   width: 100%;
   padding: 15px;
@@ -102,15 +103,43 @@ form button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
-
+  margin-top: 8px;
   transition: background-color 0.3s ease;
 }
 
 form button:hover {
   background-color: var(--red1);
 }
-/*-----------------End Of Form Modify-----------------------*/
+
+
+/*-----------------Form Modify-----------------------*/
+.container-form1 {
+  left: 0;
+  top: 0;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+#form{
+  max-width: 430px;
+  position: absolute;
+  height: 500px;
+  width: 80%;
+  padding: 30px;
+  border-radius: 6px;
+  background-color: var(--dark2);
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ajout d'une ombre portée */
+}
 
 .container header .filterEntries{
   display: flex;
@@ -191,7 +220,9 @@ table tr:hover{
   cursor: pointer;
   background: var(--dark9);
 }
+/*----------------------------------------------------------------*/
 
+      
 table tbody tr td{
   border-bottom: 1px solid var(--dark6);
 }

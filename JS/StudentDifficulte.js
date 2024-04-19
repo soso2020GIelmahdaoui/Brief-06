@@ -50,9 +50,11 @@ document.getElementById('form').addEventListener('submit', function(e) {
 
     
     alert('Informations ajoutées avec succès !');
+   
 
 
     document.getElementById('form').reset();
+    window.location.href = "StudentDash.html";
   } else {
    
     alert('Veuillez remplir tous les champs du formulaire.');

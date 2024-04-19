@@ -1,68 +1,139 @@
-// Sélection du formulaire et du bouton qui ouvre le popup
-const form = document.getElementById('form');
-const containerForm = document.querySelector('.container-form');
+const formup = document.getElementById("form");
+const titre = document.getElementById("titre");
+const brief = document.getElementById("brief");
+const difficulte = document.getElementById("difficulte");
 
-// Sélection de tous les boutons d'édition
-const modifierButtons = document.querySelectorAll('.modifierButton');
+const informations = JSON.parse(localStorage.getItem('informations'));
+const getData = informations || []; 
 
-// Ajout d'un écouteur d'événements sur tous les boutons d'édition
-modifierButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        // Récupérer le formulaire associé au bouton cliqué
-        const form = button.closest('tr').querySelector('.container-form form');
-        
-        // Ajout de la classe 'show-popup' au formulaire pour l'afficher
-        form.classList.add('show-popup');
-        containerForm.style.display = 'block'; // Afficher le conteneur du formulaire
-    });
+let isEdit = false;
+let editId;
+
+let tableau = `
+<table>
+    <thead>
+        <tr class="heading">
+            <th>Titre</th>
+            <th>Brief</th>
+            <th>Date de création</th>
+            <th>Difficulté</th>
+            <th>Validé</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+<tbody>
+`;
+informations.forEach(info => {
+    tableau += `
+    <tr id="${info.id}">
+        <td>${info.titre}</td>
+        <td>${info.brief}</td>
+        <td>${info.dateAjout}</td>
+        <td><button class="ReadButton" id="read" onclick="showInfoForm('${info.formateur}', '${info.bootcamp}', '${info.titre}', '${info.brief}', '${info.difficulte}')"><i class='bx bx-hide eye-icon'></i></button></td>
+        <td><button><i class='bx bxs-message-square-x'></i></button></td>
+        <td>
+            <button class="modifierButton" onclick="editInfo('${info.id}', '${info.titre}', '${info.brief}', '${info.difficulte}')"><i class='bx bx-edit-alt'></i></button>
+            <button class="deleteButton"><i class='bx bx-trash'></i></button>
+        </td>
+    </tr>`;
 });
 
+tableau += `</tbody></table>`;
 
-// Ajout d'un écouteur d'événements sur le formulaire pour cacher le popup lors de la soumission
-form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêcher le rechargement de la page
+const containerHeader = document.querySelector('.container-header');
+containerHeader.insertAdjacentHTML('beforeend', tableau);
 
-    // Cacher le formulaire
-    form.classList.remove('show-popup');
-    containerForm.style.display = 'none';
-});
-
-// Récupérer les informations depuis le stockage local
-var informations = JSON.parse(localStorage.getItem('informations'));
-
-// Sélectionner le corps du tableau
-var tbody = document.querySelector('tbody');
-
-// Vérifier s'il y a des informations dans le stockage local
-if (informations && informations.length > 0) {
-    // Itérer sur chaque objet d'information
-    informations.forEach(function(info) {
-        // Créer une nouvelle ligne dans le tableau
-        var row = tbody.insertRow();
-
-        // Insérer les valeurs dans les cellules de la ligne
-        var cellTitre = row.insertCell(0);
-        var cellBrief = row.insertCell(1);
-        var cellDateCreation = row.insertCell(2);
-        var cellDifficulte = row.insertCell(3);
-        var cellValide = row.insertCell(4);
-        var cellActions = row.insertCell(5);
-
-        // Remplir les cellules avec les valeurs de l'objet d'information
-        cellTitre.textContent = info.titre;
-        cellBrief.textContent = info.brief;
-        cellDateCreation.textContent = info.dateAjout;
-
-        // Ajouter les boutons dans la cellule Actions
-        cellDifficulte.innerHTML = '<button><i class="bx bx-hide eye-icon"></i></button>';
-        cellValide.innerHTML = '<button><i class="bx bxs-message-square-x"></i></button>';
-        cellActions.innerHTML = '<button class="modifierButton"><i class="bx bx-edit-alt"></i></button>' +
-                                '<button><i class="bx bx-trash"></i></button>';
-    });
-} else {
-    // S'il n'y a pas d'informations, vous pouvez ajouter une ligne dans le tableau pour indiquer que la table est vide
-    var emptyRow = tbody.insertRow();
-    var cellEmpty = emptyRow.insertCell(0);
-    cellEmpty.colSpan = "6"; // Fusionner les cellules pour couvrir toutes les colonnes
-    cellEmpty.textContent = "Aucune information disponible";
+function showInfoForm(formateur, bootcamp, titre, brief, difficulte) {
+    document.getElementById("showname").value = formateur;
+    document.getElementById("showbootcamp").value = bootcamp;
+    document.getElementById("showtitre").value = titre;
+    document.getElementById("showbrief").value = brief;
+    document.getElementById("showmsg").value = difficulte;
+    document.querySelector(".container-form").style.display = "block";
+    document.getElementById("showform").style.display = "block";
 }
+
+function editInfo(index, Titre, Brief, Difficulte) {
+    isEdit = true;
+    editId = index;
+  
+    titre.value = Titre;
+    brief.value = Brief;
+    difficulte.value = Difficulte;
+  
+    submitBtn.innerText = "Update";
+    modalTitle.innerText = "Update The Form";
+    submitBtn.removeEventListener('click', submitForm);
+    submitBtn.addEventListener('click', updateInfo);
+    document.querySelector(".container-form1").style.display = "block";
+    document.getElementById("form").style.display = "block";
+}
+
+function updateInfo() {
+    const titreValue = titre.value;
+    const briefValue = brief.value;
+    const difficulteValue = difficulte.value;
+  
+    const information = {
+      titre: titreValue,
+      brief: briefValue,
+      difficulte: difficulteValue
+    };
+  
+    getData[editId] = information;
+    localStorage.setItem('informations', JSON.stringify(getData));
+    formup.reset();
+  
+    isEdit = false;
+    submitBtn.innerText = "Submit";
+    modalTitle.innerText = "Fill the Form";
+    submitBtn.removeEventListener('click', updateInfo);
+    window.location.reload();
+}
+
+function submitForm(event) {
+    event.preventDefault();
+  
+    const titreValue = titre.value;
+    const briefValue = brief.value;
+    const difficulteValue = difficulte.value;
+  
+    const newDetail = {
+      titre: titreValue,
+      brief: briefValue,
+      difficulte: difficulteValue
+    };
+  
+    getData.push(newDetail);
+    
+    localStorage.setItem('informations', JSON.stringify(getData));
+    
+    formup.reset();
+}
+
+const boutonAfficherForm = document.querySelector('.modifierButton');
+const containerForm = document.querySelector('.container-form1');
+const formupp=document.getElementById("form");
+boutonAfficherForm.addEventListener('click', function() {
+    containerForm.style.display = "block";
+    formupp.style.display = "block";
+});
+
+const boutonAfficherFormulaire = document.getElementById('read');
+const formulaireContainer = document.querySelector('.container-form');
+boutonAfficherFormulaire.addEventListener('click', function() {
+    formulaireContainer.style.display = "block";
+});
+
+const deleteButtons = document.querySelectorAll('.deleteButton');
+deleteButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        const confirmation = confirm("Voulez-vous vraiment supprimer cet élément ?");
+        if (confirmation) {
+            const rowId = button.closest('tr').id;
+            button.closest('tr').remove();
+            informations = informations.filter(info => info.parentId !== rowId);
+            localStorage.setItem('informations', JSON.stringify(informations));
+        }
+    });
+});
